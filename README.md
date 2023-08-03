@@ -9,16 +9,16 @@ This project involves creating a Dispenser API that allows users to interact wit
 
 **Main Flow:**
 
-Add Dispenser to the Database.
+1. Add Dispenser to the Database.
 (Post) `http://localhost:3000/dispensers/`
 Body Request:
 `{
     "flow_volume": "0.7"
 }`
 
-Dispenser is closed initially.
+**Dispenser is closed initially.**
 
-(Post) `http://localhost:3000/dispenser_usage`
+2. (Post) `http://localhost:3000/dispenser_usage`
 
 Body Request:
 `{
@@ -30,9 +30,9 @@ Response:
     "message": "Opened"
 }`
 
-Then we opens the dispenser, make `is_open = true` of that dispenser and creates a new thread start working for tracking time. This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`.
+This will open the dispenser, make `is_open = true` of that dispenser and creates a new thread start working for tracking time. This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`.
 
-When Dispenser is closed again.
+3. When Dispenser is closed again.
 
 (Patch) `http://localhost:3000/dispensers/:id`
 
@@ -41,7 +41,7 @@ When Dispenser is closed again.
     "is_open": "false"
 }`
 
-The thread stops and stores:
+4. This thread stops and stores:
 `dispenser_id,
 start_time,
 end_time,
@@ -49,7 +49,6 @@ money_made`
 
 in `DispenserUsage` Collection.
 
-Done with Documentation
 
 **Requirements:**
 
