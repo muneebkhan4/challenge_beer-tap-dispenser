@@ -15,8 +15,6 @@ describe("GET /dispenser_usage/:id/usage_count", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 25,
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     // Create two dispenser usages associated with the dispenser
@@ -36,8 +34,6 @@ describe("GET /dispenser_usage/:id/usage_count", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 25,
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     const res = await chai
@@ -65,8 +61,6 @@ describe("GET /dispenser_usage/:id/total_usage_time", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 25,
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     // Create two dispenser usages associated with the dispenser
@@ -94,8 +88,6 @@ describe("GET /dispenser_usage/:id/total_usage_time", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 25,
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     const res = await chai
@@ -123,8 +115,6 @@ describe("GET /dispenser_usage/:id/total_money_made", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 10, // $ per second
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     // Create two dispenser usages associated with the dispenser
@@ -154,8 +144,6 @@ describe("GET /dispenser_usage/:id/total_money_made", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 10, // $ per second
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     const res = await chai
@@ -183,8 +171,6 @@ describe("POST /dispenser_usage", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 10,
       is_open: false,
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     const res = await chai
@@ -223,8 +209,6 @@ describe("POST /dispenser_usage", () => {
     const dispenser = await Dispenser.create({
       flow_volume: 10,
       is_open: true, // Set the dispenser to open
-      total_usage_time: 0,
-      total_money_made: 0,
     });
 
     const res = await chai

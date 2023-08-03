@@ -6,8 +6,7 @@ const router = express.Router();
 // Create a new dispenser
 router.post("/", async (req, res) => {
   try {
-    const { flow_volume, is_open, total_usage_time, total_money_made } =
-      req.body;
+    const { flow_volume, is_open } = req.body;
 
     if (!flow_volume) {
       return res.status(400).json({ message: "Flow volume is required." });
@@ -16,8 +15,6 @@ router.post("/", async (req, res) => {
     const dispenser = await Dispenser.create({
       flow_volume,
       is_open: is_open || false,
-      total_usage_time: total_usage_time || 0,
-      total_money_made: total_money_made || 0,
     });
 
     res.status(201).json(dispenser);
@@ -30,6 +27,10 @@ router.post("/", async (req, res) => {
 
 // Retrieve all dispensers
 router.get("/", async (req, res) => {
+  const invalidParams = req.query.invalidParam;
+  if (invalidParams) {
+    res.status(500).json({ message: "Error retrieving dispensers." });
+  }
   try {
     const dispensers = await Dispenser.find();
     res.status(200).json(dispensers);

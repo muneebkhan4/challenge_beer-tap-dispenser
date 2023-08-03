@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha test",
+    "test": "npx mocha test --exit",
     "start": "node app.js"
   },
   "keywords": [],

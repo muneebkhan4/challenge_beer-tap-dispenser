@@ -22,10 +22,7 @@ async function calculateDispenserUsage() {
     const elapsedTime = (endTime - startTime) / 1000; // Calculate time elapsed in seconds
     const moneyMade = flowVolume * elapsedTime; // Calculate money made based on flow volume and time elapsed
     await storeDispenserUsage(dispenserId, startTime, endTime, moneyMade);
-
-    console.log("Dispenser usage calculation completed.");
   } catch (error) {
-    console.error("Error calculating dispenser usage:", error.message);
     parentPort.postMessage({ error: error.message }); // Post an error message to the parent thread
   } finally {
     // Close the database connection
