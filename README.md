@@ -9,16 +9,16 @@ This project involves creating a Dispenser API that allows users to interact wit
 
 **Main Flow:**
 
-Add Dispenser to the Database.
+1. Add Dispenser to the Database.
 (Post) `http://localhost:3000/dispensers/`
 Body Request:
 `{
     "flow_volume": "0.7"
 }`
 
-Dispenser is closed initially.
+**Dispenser is closed initially.**
 
-(Post) `http://localhost:3000/dispenser_usage`
+2. (Post) `http://localhost:3000/dispenser_usage`
 
 Body Request:
 `{
@@ -30,18 +30,18 @@ Response:
     "message": "Opened"
 }`
 
-Then we opens the dispenser, make `is_open = true` of that dispenser and creates a new thread start working for tracking time. This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`.
+This will open the dispenser, make `is_open = true` of that dispenser and creates a new thread start working for tracking time. This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`.
 
-When Dispenser is closed again.
+3. When Dispenser is closed again.
 
-(Patch) http://localhost:3000/dispensers/:id
+(Patch) `http://localhost:3000/dispensers/:id`
 
 **Body Request:**
 `{
     "is_open": "false"
 }`
 
-The thread stops and stores:
+4. This thread stops and stores:
 `dispenser_id,
 start_time,
 end_time,
@@ -49,7 +49,6 @@ money_made`
 
 in `DispenserUsage` Collection.
 
-Done with Documentation
 
 **Requirements:**
 
@@ -62,7 +61,7 @@ To run this project, you need the following software installed on your system:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/dispenser-api.git
+   git clone https://github.com/muneebkhan4/challenge_beer-tap-dispenser.git
    cd dispenser-api
    ```
 
@@ -93,12 +92,20 @@ To run this project, you need the following software installed on your system:
 3. `GET /dispensers/:id`: Retrieve a specific dispenser by its ID.
 
 4. `PATCH /dispensers/:id`: Update a specific dispenser by its ID (change is_open status).
+   
+4. `POST /dispenser_usage`: Receive `{"dispenserId": "any valid Id"}` update its `is_open` status to `true`, start a new thread that record  time.  This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`. The thread stops and stores:
+`dispenser_id,
+start_time,
+end_time,
+money_made`
 
-5. `GET /dispenser_usage/:id/usage_count`: Get the count of times a dispenser was used.
+in `DispenserUsage` Collection.
 
-6. `GET /dispenser_usage/:id/total_usage_time`: Get the total time a dispenser was used.
+5. `GET /dispenser_usage/:id/usage_count`: Get the total number of times a dispenser was used.
 
-7. `GET /dispenser_usage/:id/total_money_made`: Get the total amount of money a dispenser made.
+6. `GET /dispenser_usage/:id/total_usage_time`: Get the total time for which a dispenser was used.
+
+7. `GET /dispenser_usage/:id/total_money_made`: Get the total amount of money a dispenser has made.
 
 **Testing:**
 
