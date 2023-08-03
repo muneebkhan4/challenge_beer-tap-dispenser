@@ -1,5 +1,5 @@
 const express = require("express");
-const connectToDB = require("./connectDB");
+const { connectToDB, closeDBConnection } = require("./connectDB");
 const dispenserRoutes = require("./routes/dispenser");
 const dispenserUsageRoutes = require("./routes/dispenserUsage");
 
@@ -16,8 +16,20 @@ app.use("/dispenser_usage", dispenserUsageRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+// Gracefully close the MongoDB connection when the server is terminated
+process.on("SIGINT", async () => {
+  try {
+    await closeDBConnection();
+    console.log("Server and MongoDB connection terminated.");
+    process.exit(0);
+  } catch (error) {
+    console.error("Error closing MongoDB connection:", error.message);
+    process.exit(1);
+  }
 });
 
 module.exports = app;
