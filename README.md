@@ -34,7 +34,7 @@ Then we opens the dispenser, make `is_open = true` of that dispenser and creates
 
 When Dispenser is closed again.
 
-(Patch) http://localhost:3000/dispensers/:id
+(Patch) `http://localhost:3000/dispensers/:id`
 
 **Body Request:**
 `{
@@ -93,12 +93,20 @@ To run this project, you need the following software installed on your system:
 3. `GET /dispensers/:id`: Retrieve a specific dispenser by its ID.
 
 4. `PATCH /dispensers/:id`: Update a specific dispenser by its ID (change is_open status).
+   
+4. `POST /dispenser_usage`: Receive `{"dispenserId": "any valid Id"}` update its `is_open` status to `true`, start a new thread that record  time.  This thread check for status of `is_open` after every second and stops when status of `is_open` changes to `false`. The thread stops and stores:
+`dispenser_id,
+start_time,
+end_time,
+money_made`
 
-5. `GET /dispenser_usage/:id/usage_count`: Get the count of times a dispenser was used.
+in `DispenserUsage` Collection.
 
-6. `GET /dispenser_usage/:id/total_usage_time`: Get the total time a dispenser was used.
+5. `GET /dispenser_usage/:id/usage_count`: Get the total number of times a dispenser was used.
 
-7. `GET /dispenser_usage/:id/total_money_made`: Get the total amount of money a dispenser made.
+6. `GET /dispenser_usage/:id/total_usage_time`: Get the total time for which a dispenser was used.
+
+7. `GET /dispenser_usage/:id/total_money_made`: Get the total amount of money a dispenser has made.
 
 **Testing:**
 
