@@ -7,13 +7,10 @@ let dbConnection;
 const connectToDB = async () => {
   try {
     if (!dbConnection) {
-      dbConnection = await mongoose.connect(
-        "mongodb://localhost:27017/beer_dispenser_db",
-        {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        }
-      );
+      dbConnection = await mongoose.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
     }
   } catch (error) {
     console.error("Error connecting to MongoDB:", error.message);

@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const { connectToDB, closeDBConnection } = require("./connectDB");
 const dispenserRoutes = require("./routes/dispenser");
 const dispenserUsageRoutes = require("./routes/dispenserUsage");
@@ -15,7 +16,7 @@ app.use("/dispensers", dispenserRoutes);
 app.use("/dispenser_usage", dispenserUsageRoutes);
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
