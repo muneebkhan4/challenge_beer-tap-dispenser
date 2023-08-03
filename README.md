@@ -61,7 +61,7 @@ To run this project, you need the following software installed on your system:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/dispenser-api.git
+   git clone https://github.com/muneebkhan4/challenge_beer-tap-dispenser.git
    cd dispenser-api
    ```
 
