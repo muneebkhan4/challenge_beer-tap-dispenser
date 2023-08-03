@@ -9,14 +9,6 @@ const dispenserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  total_usage_time: {
-    type: Number,
-    default: 0,
-  },
-  total_money_made: {
-    type: Number,
-    default: 0,
-  },
 });
 
 // Pre-save hook to validate flow_volume field
