@@ -119,32 +119,6 @@ router.post("/", async (req, res) => {
     };
 
     const worker = new Worker("./dispenserUsageWorker.js", { workerData });
-
-    // Listen for messages from the worker
-    worker.on("message", (message) => {
-      if (message.status === "completed") {
-        res
-          .status(200)
-          .json({
-            message: "Dispenser usage calculation completed successfully.",
-          });
-      } else if (message.error) {
-        res
-          .status(200)
-          .json({ message: `Worker exited with Error: ${message.error}` });
-      }
-    });
-
-    // Listen for errors from the worker
-    worker.on("error", (error) => {
-      res.status(200).json({ message: `Worker exited with Error: ${error}` });
-    });
-
-    // Listen for when the worker exits
-    worker.on("exit", (code) => {
-      res.status(200).json({ message: `Worker exited with code ${code}` });
-    });
-
     res.status(200).json({ message: "Opened" });
   } catch (error) {
     res.status(500).json({ message: "Error recording dispenser usage." });
